@@ -16,23 +16,31 @@ namespace UC_EmployeeWage
         int isPartTime = 4;
         public void employeeAttendatce() 
         {
-            Random random = new Random();
-            int attendance = random.Next(3);
-            switch(attendance)
+            int[] values = new int[20];
+            for (int i = 1; i <= 20; i++)
             {
-                case 1:
-                    Console.WriteLine("Employee Fulltime");
-                    int fullTimeWage = empWagePerHour * isFullTime;
-                    Console.WriteLine("Employee Wage per day = " + fullTimeWage);
-                    break;
-                case 2:
-                    Console.WriteLine("Employee Parttime");
-                    int partTimeWage = empWagePerHour * isPartTime;
-                    Console.WriteLine("Employee Wage per day = " + partTimeWage);
-                    break;
-                case 0:
-                    Console.WriteLine("Employee Absent");
-                    break;
+                Random random = new Random();
+                int attendance = random.Next(3);
+                switch (attendance)
+                {
+                    case 1:
+                        Console.WriteLine("Employee Fulltime");
+                        int fullTimeWage = empWagePerHour * isFullTime;
+                        Console.WriteLine("Day " + i +" Employee Wage is = " + fullTimeWage);
+                        values[i]=fullTimeWage;
+                        break;
+                    case 2:
+                        Console.WriteLine("Employee Parttime");
+                        int partTimeWage = empWagePerHour * isPartTime;
+                        Console.WriteLine("Day " + i +" Employee Wage is = " + partTimeWage);
+                        values[i]=partTimeWage;
+                        break;
+                    case 0:
+                        Console.WriteLine("Employee Absent");
+                        Console.WriteLine("Day " + i + " Employee Wage is = " + 0);
+                        values[i]=0;
+                        break;
+                }
             }
                
         }
