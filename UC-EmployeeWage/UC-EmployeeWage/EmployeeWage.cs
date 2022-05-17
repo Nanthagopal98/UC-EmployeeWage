@@ -8,23 +8,31 @@ namespace UC_EmployeeWage
 {
     public class EmployeeWage
     {
-        int employeePresent = 1;
+        int employeeFullTimet = 1;
+        int employeePartTimet = 2;
         int absent = 0;
         int empWagePerHour = 20;
         int isFullTime = 8;
+        int isPartTime = 4;
         public void employeeAttendatce() 
         {
             Random random = new Random();
-            int attendance = random.Next(2);
-            if(attendance==1)
+            int attendance = random.Next(3);
+            switch(attendance)
             {
-                Console.WriteLine("Employee present");
-                int wagePerDay = empWagePerHour * isFullTime;
-                Console.WriteLine("Employee Wage per day = " + wagePerDay);
-            }
-            else
-            {
-                Console.WriteLine("Employee absent");
+                case 1:
+                    Console.WriteLine("Employee Fulltime");
+                    int fullTimeWage = empWagePerHour * isFullTime;
+                    Console.WriteLine("Employee Wage per day = " + fullTimeWage);
+                    break;
+                case 2:
+                    Console.WriteLine("Employee Parttime");
+                    int partTimeWage = empWagePerHour * isPartTime;
+                    Console.WriteLine("Employee Wage per day = " + partTimeWage);
+                    break;
+                case 0:
+                    Console.WriteLine("Employee Absent");
+                    break;
             }
                
         }
