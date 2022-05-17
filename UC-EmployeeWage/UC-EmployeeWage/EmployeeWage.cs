@@ -8,14 +8,7 @@ namespace UC_EmployeeWage
 {
     public class EmployeeWage
     {
-        int empWagePerHour = 20;
-        int isFullTime = 8;
-        int isPartTime = 4;
-        int maxWorkinhHours = 100;
-        int maxWorkingDays = 20;
-        int empWage = 0;
-        int workingHour = 0;
-        int hour;
+        int empWagePerHour = 20, isFullTime = 8, isPartTime = 4, maxWorkinhHours = 100, maxWorkingDays = 20, empWage = 0, workingHour = 0,hour;
         public void employeeAttendatce() 
         {
             for (int i = 1; i <= maxWorkingDays; i++)
