@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace UC_EmployeeWage
 {
-    public class EmployeeWage
+    public class EmployeeWage 
     {
-        int empWagePerHour = 20, isFullTime = 8, isPartTime = 4, maxWorkinhHours = 100, maxWorkingDays = 20, empWage = 0, workingHour = 0,hour;
-        public void employeeAttendatce() 
+        int isFullTime = 8, isPartTime = 4, empWage = 0, workingHour = 0,hour;
+        public void employeeAttendatce(int empWagePerHour, int maxWorkinhHours, int maxWorkingDays) 
         {
             for (int i = 1; i <= maxWorkingDays; i++)
             {
