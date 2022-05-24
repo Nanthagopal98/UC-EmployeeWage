@@ -6,31 +6,39 @@ using System.Threading.Tasks;
 
 namespace UC_EmployeeWage
 {
-    public class bulider
+    public interface rules
     {
-        private int numberOfCompanies = 0;
-        private EmployeeWage[] companyEmpWagearray;
+        public void computeEmpWage();
+        public int computeEmpWage(string[] args);
+        public void totalEmpWage(string[] args);
+    }
+    public class builder
+    {
+        private LinkedList<EmployeeWage> companyEmpWageList;
+        private Dictionary<string, EmployeeWage> empWageDictionary;
         int empWage = 0, workingHour = 0, hour;
 
-        public bulider()
+        public builder()
         {
-            this.companyEmpWagearray = new EmployeeWage[5];
+            this.companyEmpWageList = new LinkedList<EmployeeWage>();
+            this.empWageDictionary = new Dictionary<string, EmployeeWage>();
         }
 
-        public void addtoArray(string companyName, int empWagePerHour, int maxWorkinhHours, int maxWorkingDays)
+        public void addDetails(string companyName, int empWagePerHour, int maxWorkinhHours, int maxWorkingDays)
         {
-            companyEmpWagearray[this.numberOfCompanies] = new EmployeeWage(companyName, empWagePerHour, maxWorkinhHours, maxWorkingDays);
-            numberOfCompanies++;
+            EmployeeWage EmployeeWage = new EmployeeWage(companyName, empWagePerHour, maxWorkinhHours, maxWorkingDays);
+            this.companyEmpWageList.AddLast(EmployeeWage);
+            this.empWageDictionary.Add(companyName , EmployeeWage);
         }
         public void computeEmpWage()
         {
-            for(int i = 0; i < numberOfCompanies; i++)
+            foreach(EmployeeWage EmployeeWage in this.companyEmpWageList)
             {
-                companyEmpWagearray[i].totalEmpWage((this.computeEmpWage(this.companyEmpWagearray[i])));
-                Console.WriteLine(this.companyEmpWagearray[i].companyNameAndSalary());
+                EmployeeWage.totalEmpWage(this.computeEmpWage(EmployeeWage));
+                Console.WriteLine(EmployeeWage.companyNameAndSalary());
             }
         }
-        private int computeEmpWage(EmployeeWage EmployeeWage)
+        public int computeEmpWage(EmployeeWage EmployeeWage)
         {
             int dailyWage;
             while (empWage <= EmployeeWage.maxWorkinhHours && workingHour <= EmployeeWage.maxWorkingDays)
@@ -59,6 +67,10 @@ namespace UC_EmployeeWage
                 dailyWage = hour * EmployeeWage.empWagePerHour;
             }
             return empWage = workingHour * EmployeeWage.empWagePerHour;
+        }
+        public int getTotalWage(string companyName)
+        {
+            return this.empWageDictionary[companyName].empWage;
         }
         
     }
